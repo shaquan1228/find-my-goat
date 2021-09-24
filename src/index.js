@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import routes from './config/routes.js';
+
+
+
+
+
+const createRoutes = routes();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  createRoutes,
   document.getElementById('root')
 );
 
