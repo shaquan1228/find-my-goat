@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import ReturningUser from '../components/login/ReturningUser.js';
 import JoiningUser from '../components/login/JoiningUser.js';
@@ -8,7 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-export default function Login() {
+export default function Login(props) {
     const [loginStatus, setLoginStatus] = useState(false);
     const [signUpStatus, setSignUpStatus] = useState(false);
 
@@ -41,7 +42,7 @@ export default function Login() {
                         Sign Up
                     </Button>
 
-                    {/* TODO: ADd feedback for users who are logged in. wrap 44 and 45 in ternary checking if user is logged in */}
+                    {/* TODO: Add feedback for users who are logged in. wrap 44 and 45 in ternary checking if user is logged in */}
                     {loginStatus && <ReturningUser loginStatus={loginStatus} setLoginStatus={setLoginStatus} />}
                     {signUpStatus && <JoiningUser signUpStatus={signUpStatus} setSignUpStatus={setSignUpStatus} />}
 
