@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
 //https://stackoverflow.com/questions/38678255/react-redux-component-does-not-rerender-on-store-state-change
-import { connect } from 'react-redux';
-import store from "../../../config/store";
-
+import { useSelector, useDispatch } from 'react-redux';
+import useLocalStorage from '../../../services/hooks/useLocalStorage.js'
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -10,20 +10,23 @@ import Image from 'react-bootstrap/Image';
 import NavDropdown from 'react-bootstrap/NavDropdown'
 
 function UserMenu(props) {
+    props = useSelector((state) => ({ loggedIn: state.loggedIn, username: state.username, aviURL: state.aviURL }))
+    console.log(props.aviURL)
+    const dispatch = useDispatch();
+    const handleLogout = () => dispatch({ type: 'log out' });
 
-    const handleLogout = () => store.dispatch({ type: 'log out' })
 
     return (
         <Container>
 
             <Row className="align-items-center">
 
-                <Col xs={7} md={6}>
-                    {props.loggedIn && ('Welcome, ' + props.username)}
+                <Col xs={4} md={6}>
+                    {props.loggedIn === true && ('Welcome, ' + props.username)}
                 </Col>
-                <Col xs={5} md={6}>
+                <Col xs={8} md={6}>
 
-                    {props.loggedIn && (
+                    {props.loggedIn === true && (
                         <NavDropdown
                             title={
                                 <Image
@@ -45,8 +48,5 @@ function UserMenu(props) {
     )
 }
 
-const mapStateToProps = (state) => ({ loggedIn: state.loggedIn, username: state.username, aviURL: state.aviURL })
 
-
-
-export default connect(mapStateToProps)(UserMenu)
+export default UserMenu;

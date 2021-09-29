@@ -1,5 +1,5 @@
 import store from "../../config/store";
-
+import { useDispatch } from 'react-redux';
 /**
  * Checks if username exists in the database.
  * If a user exists in the database, checks if 
@@ -8,9 +8,8 @@ import store from "../../config/store";
  * @param {String} password 
  */
 function handleDatabaseLogin(username, password) {
-
-    if (username === "1" && password === "1")
-        return store.dispatch({ type: 'log in' }) && 200;
+    if (username === "test" && password === "1")
+        return 200;
 
 }
 /**

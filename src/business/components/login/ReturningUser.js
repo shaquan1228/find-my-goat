@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import useLocalStorage from '../../../services/hooks/useLocalStorage.js'
+import { useSelector, useDispatch } from 'react-redux';
 
 
 import Modal from 'react-bootstrap/Modal';
@@ -7,18 +9,30 @@ import Button from 'react-bootstrap/Button';
 
 import { handleDatabaseLogin } from '../../../services/databases/userInfo.js';
 
-export default function ReturningUser(props) {
 
+
+export default function ReturningUser(props) {
+    let store = useSelector((state) => ({ loggedIn: state.loggedIn }))
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+
     const handleUsernameChange = (e) => setUsername(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
-
     const hideModal = () => props.setLoginStatus(false);
+
+    const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleDatabaseLogin(username, password);
+        if (handleDatabaseLogin(username, password) === 200) {
+            dispatch({
+                type: 'log in',
+                payload: {
+                    username: username,
+                    aviURL: 'hi'
+                }
+            });
+        }
         hideModal();
     }
 
