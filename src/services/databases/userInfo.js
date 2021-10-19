@@ -1,6 +1,10 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, child, get, ref } from "firebase/database";
+import firestoreConfig from "../firestoreConfig";
 
 const auth = getAuth();
+const userDB = getDatabase(firestoreConfig);
+const userDBRef = ref(userDB);
 /**
  * Checks if username exists in the database.
  * If a user exists in the database, checks if 
@@ -8,29 +12,14 @@ const auth = getAuth();
  * @param {String} username 
  * @param {String} password 
  */
-function handleDatabaseLogin(email, password) {
-    let userInfo = {
+async function handleDatabaseLogin(email, password) {
 
-    }
+    let userAuthorization = await signInWithEmailAndPassword(auth, email, password).catch(err => console.log(err))
+    if (!userAuthorization) return 401
+    let userAuthentication = await get(child(userDBRef, `/users/\"${userAuthorization.user.uid}\"`)).catch(err => console.log(err))
+    if (!userAuthentication) return 403
 
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            userInfo.email = userCredential.user;
-
-            // ...
-        })
-        .catch((error) => {
-            alert("wrong")
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
-
-    return userInfo;
-
-    // if (username === "test" && password === "1")
-    //     return 200;
-
+    return userAuthentication.val();
 }
 /**
  * Checks if password and passwordConfirmation 
@@ -47,6 +36,7 @@ function handleDatabaseLogin(email, password) {
  */
 function handleCreateDatabaseAccount(email, username, password, passwordConfirmation) {
     //TODO:Should I check if pw and pwConf are the same here or in the business logic?
+
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 

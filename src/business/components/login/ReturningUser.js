@@ -24,16 +24,23 @@ export default function ReturningUser(props) {
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
-        const fetchData = handleDatabaseLogin(username, password);
-        if (fetchData) {
+
+
+        const fetchData = async () => {
+
+            let info = await handleDatabaseLogin(username, password);
+            if (!info) return
+            console.log(info)
             dispatch({
                 type: 'log in',
                 payload: {
-                    username: fetchData.username,
-                    aviURL: 'hi'
+                    username: info.username,
+                    aviURL: info.photoURL
                 }
-            });
+            })
         }
+
+        fetchData()
         hideModal();
     }
 
