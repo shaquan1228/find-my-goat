@@ -11,7 +11,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 
 function UserMenu(props) {
     props = useSelector((state) => ({ loggedIn: state.loggedIn, username: state.username, aviURL: state.aviURL }))
-    console.log(props.aviURL)
     const dispatch = useDispatch();
     const handleLogout = () => dispatch({ type: 'log out' });
 
@@ -19,7 +18,7 @@ function UserMenu(props) {
     return (
         <Container>
 
-            <Row className="align-items-center">
+            <Row className="align-items-end">
 
                 <Col xs={4} md={6}>
                     {props.loggedIn === true && ('Welcome, ' + props.username)}
@@ -32,11 +31,10 @@ function UserMenu(props) {
                                 <Image
                                     rounded={true}
                                     thumbnail={true}
-
                                     src={props.aviURL} />
                             }>
 
-                            <NavDropdown.Item onClick={handleLogout}>Log Out</NavDropdown.Item>
+                            <NavDropdown.Item className="dropdown-toggle nav-link" onClick={handleLogout}>Log Out</NavDropdown.Item>
                         </NavDropdown>
                     )}
 

@@ -24,11 +24,12 @@ export default function ReturningUser(props) {
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (handleDatabaseLogin(username, password) === 200) {
+        const fetchData = handleDatabaseLogin(username, password);
+        if (fetchData) {
             dispatch({
                 type: 'log in',
                 payload: {
-                    username: username,
+                    username: fetchData.username,
                     aviURL: 'hi'
                 }
             });
