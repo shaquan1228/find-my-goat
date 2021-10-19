@@ -1,0 +1,11 @@
+html, body, #root {
+    height:100%;
+    /* border:1px solid red; */
+}
+
+#root>div{
+    height:90%;
+    /* border:1px solid blue; */
+}
+
+/*TODO: Clean up tester css (borders*/
