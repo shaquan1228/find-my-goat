@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import { Link } from "react-router-dom";
 import NavBar from 'react-bootstrap/NavBar';
 import Col from 'react-bootstrap/Col';
-
+import Nav from 'react-bootstrap/Nav';
 
 export default function NavigationBar(props) {
 
@@ -18,11 +18,14 @@ export default function NavigationBar(props) {
 
                 <Link to="/"> <NavBar.Brand xs={2} sm={2} md={2} xl={2} xxl={2}> Logo </NavBar.Brand></Link>
 
-                <NavBar.Collapse>
+                <NavBar.Collapse className="justify-content-end">
                     {/* <Col xs={1} sm={1} md={1} xl={1} xxl={1}></Col> */}
-                    <Col xs={2} sm={2} md={2} xl={2} xxl={2}></Col>
+                    <Col xs={2} sm={2} md={2} xl={2} xxl={2}>
+                        <Nav.Link href="/login">Log In / Sign Up</Nav.Link>
+                        <Nav.Link href="/find">Find</Nav.Link>
+                    </Col>
+
                     <Col xs={6} sm={6} md={6} xl={6} xxl={6}> <SearchBar /> </Col>
-                    <Col xs={2} sm={2} md={2} xl={2} xxl={2}></Col>
                     <Col xs={2} sm={2} md={2} xl={2} xxl={2}> <UserMenu /> </Col>
                 </NavBar.Collapse>
 

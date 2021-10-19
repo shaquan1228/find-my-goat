@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-
+import firestoreConfig from '../services/firestoreConfig.js';
 
 //TODO: Remove App and Template before deployment. These are just tests to prove
 // that routing works.
@@ -17,7 +17,7 @@ let pathComponent2DArray = [
 
     ["/", TestPage, "exact"],
     ["/test", Template, null],
-    ["/login", Login, null]
+    ["/login", Login, null],
 
 ]
 
