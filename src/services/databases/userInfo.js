@@ -13,7 +13,6 @@ const userDBRef = ref(userDB);
  * @param {String} password 
  */
 async function handleDatabaseLogin(email, password) {
-
     try {
 
         let userAuthorization = await signInWithEmailAndPassword(auth, email, password).catch(err => console.log(err))
@@ -22,6 +21,7 @@ async function handleDatabaseLogin(email, password) {
         return userAuthentication.val();
     }
     catch (err) { console.error(err) }
+
 }
 /**
  * Checks if password and passwordConfirmation 

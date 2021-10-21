@@ -10,6 +10,7 @@ const firebaseConfig = {
     messagingSenderId: "797262857063",
     appId: "1:797262857063:web:61650f75862b036bff25c2",
     databaseURL: "https://find-my-goat-default-rtdb.firebaseio.com/"
+
 };
 
 // Initialize Firebase
