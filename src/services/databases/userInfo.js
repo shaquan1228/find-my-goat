@@ -14,12 +14,14 @@ const userDBRef = ref(userDB);
  */
 async function handleDatabaseLogin(email, password) {
 
-    let userAuthorization = await signInWithEmailAndPassword(auth, email, password).catch(err => console.log(err))
-    if (!userAuthorization) return 401
-    let userAuthentication = await get(child(userDBRef, `/users/\"${userAuthorization.user.uid}\"`)).catch(err => console.log(err))
-    if (!userAuthentication) return 403
+    try {
 
-    return userAuthentication.val();
+        let userAuthorization = await signInWithEmailAndPassword(auth, email, password).catch(err => console.log(err))
+        let userAuthentication = await get(child(userDBRef, `/users/\"${userAuthorization.user.uid}\"`)).catch(err => console.log(err))
+
+        return userAuthentication.val();
+    }
+    catch (err) { console.error(err) }
 }
 /**
  * Checks if password and passwordConfirmation 

@@ -30,7 +30,6 @@ export default function ReturningUser(props) {
 
             let info = await handleDatabaseLogin(username, password);
             if (!info) return
-            console.log(info)
             dispatch({
                 type: 'log in',
                 payload: {
