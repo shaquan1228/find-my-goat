@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import firestoreConfig from '../services/firestoreConfig.js';
+
 
 //TODO: Remove App and Template before deployment. These are just tests to prove
 // that routing works.
