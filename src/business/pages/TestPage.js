@@ -10,8 +10,8 @@ function TestPage() {
       <Container>
         <Row>
           <FavoriteCard />
-          {/* <ScatterPlot />
-          <LinePlot /> */}
+          <ScatterPlot />
+          <LinePlot />
         </Row>
       </Container>
     </div>

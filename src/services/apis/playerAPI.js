@@ -19,6 +19,16 @@ async function getAllPlayers() {
     return response;
 }
 
+async function getAllPlayerSeasonStats() {
+    const endpoint = "https://api.sportsdata.io/v3/nba/stats/json/PlayerSeasonStats/2021";
+    const keyQuery = "?key=" + process.env.REACT_APP_SPORTS_DATA_API_KEY;
+    const url = endpoint + keyQuery;
+    const response = await getRequest(url);
+    return response;
+
+
+}
+
 
 
 async function getPlayerGames(playerID) {
